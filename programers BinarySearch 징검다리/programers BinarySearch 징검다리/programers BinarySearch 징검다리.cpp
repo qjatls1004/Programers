@@ -9,35 +9,6 @@
 #include <set>
 using namespace std;
 
-long long solution(int n, vector<int> times) {
-	unsigned long long answer = 0;
-	sort(times.begin(), times.end());
-
-	unsigned long long low = 1;
-	unsigned long long high = times[times.size() - 1] * n;
-
-	while (low <= high) {
-		unsigned long long mid = (low + high) / 2;
-		unsigned long long cnt = 0;
-
-		for (int i = 0; i < times.size(); i++) {
-			cnt += mid / times[i];
-		}
-
-		if (cnt >= n) {
-			if (answer == 0)
-				answer = mid;
-			else
-				answer = min(answer, mid);
-			high = mid - 1;
-		}
-		else {
-			low = mid + 1;
-		}
-	}
-	return answer;
-}
-
 int solution(int distance, vector<int> rocks, int n) {
 	int answer = 0;
 	rocks.push_back(distance);
